@@ -1,1 +1,4 @@
-# reinforcement-learning-tp3
+# Reinforcement Learning TP3
+
+
+Indications dans le fichier taxi.py
