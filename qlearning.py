@@ -2,7 +2,7 @@ from collections import defaultdict
 import random
 import typing as t
 import numpy as np
-import gymnasium as gym
+import gym
 
 
 Action = int
@@ -49,6 +49,7 @@ class QLearningAgent:
         """
         value = 0.0
         # BEGIN SOLUTION
+        value = max([self.get_qvalue(state,a) for a in self.legal_actions])
         # END SOLUTION
         return value
 
@@ -63,8 +64,10 @@ class QLearningAgent:
         """
         q_value = 0.0
         # BEGIN SOLUTION
+        TD_target = reward + self.gamma * self.get_value(next_state)
+        TD_error = TD_target - self.get_qvalue(state,action)
+        q_value = self.get_qvalue(state, action) + self.learning_rate *TD_error
         # END SOLUTION
-
         self.set_qvalue(state, action, q_value)
 
     def get_best_action(self, state: State) -> Action:
@@ -91,6 +94,10 @@ class QLearningAgent:
         action = self.legal_actions[0]
 
         # BEGIN SOLUTION
+        if (random.uniform(0, 1) > self.epsilon):
+            action = self.get_best_action(state)
+        else:
+            action = random.choice(self.legal_actions)
         # END SOLUTION
 
         return action
