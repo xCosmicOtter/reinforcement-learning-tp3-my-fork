@@ -36,7 +36,7 @@ n_actions = env.action_space.n  # type: ignore
 #################################################
 
 agent = QLearningAgent(
-    learning_rate=0.5, epsilon=0.25, gamma=0.99, legal_actions=list(range(n_actions))
+    learning_rate=0.5, epsilon=0.1, gamma=0.99, legal_actions=list(range(n_actions))
 )
 
 
@@ -72,7 +72,7 @@ for i in range(1000):
     if i % 100 == 0:
         print("mean reward", np.mean(rewards[-100:]))
 
-# assert np.mean(rewards[-100:]) > 0.0
+assert np.mean(rewards[-100:]) > 0.0
 # DONE: créer des vidéos de l'agent en action
 def record_agent_performance(agent, env, name_prefix = "agent",number_generation: int = 5, video_folder: str = "videos"):
     env = RecordVideo(env, video_folder=video_folder, name_prefix=name_prefix, episode_trigger=lambda x: True)
@@ -148,7 +148,7 @@ def run_trials(agent, n_trials=50, n_episodes=100):
 
 
 def compare_agents():
-    agents = [QLearningAgent(learning_rate=0.5, epsilon=0.25, gamma=0.99, legal_actions=list(range(n_actions))), 
+    agents = [QLearningAgent(learning_rate=0.5, epsilon=0.1, gamma=0.99, legal_actions=list(range(n_actions))), 
               QLearningAgentEpsScheduling(learning_rate=0.5, epsilon=0.25, gamma=0.99, legal_actions=list(range(n_actions))),
                 SarsaAgent(learning_rate=0.5, gamma=0.99, legal_actions=list(range(n_actions)), epsilon=0.25)]
     agents_name = ["QLearningAgent", "QLearningAgentEpsScheduling", "SarsaAgent"]
