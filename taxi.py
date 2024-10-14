@@ -87,7 +87,7 @@ def record_agent_performance(agent, env, name_prefix = "agent",number_generation
             episode_over = terminated or truncated
 
     env.close()
-record_agent_performance(agent,env,"QLearningAgent",1)
+record_agent_performance(agent,env,"QLearningAgent",5)
 #################################################
 # 2. Play with QLearningAgentEpsScheduling
 #################################################
@@ -106,7 +106,7 @@ for i in range(1000):
 assert np.mean(rewards[-100:]) > 0.0
 
 # TODO: créer des vidéos de l'agent en action
-record_agent_performance(agent,env,"QLearningAgentEpsScheduling",1)
+record_agent_performance(agent,env,"QLearningAgentEpsScheduling",5)
 
 
 ####################
@@ -121,7 +121,7 @@ for i in range(1000):
     rewards.append(play_and_train(env, agent))
     if i % 100 == 0:
         print("mean reward", np.mean(rewards[-100:]))
-record_agent_performance(agent,env,"SARSA",1)
+record_agent_performance(agent,env,"SARSA",5)
 
 
 
